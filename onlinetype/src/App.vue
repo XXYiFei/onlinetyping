@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    666
+    <v-typing></v-typing>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Typing from './components/Typing/Typing'
+
 export default {
-  name: 'App'
+  components:{
+    'v-typing':Typing
+  }
 }
 </script>
 
