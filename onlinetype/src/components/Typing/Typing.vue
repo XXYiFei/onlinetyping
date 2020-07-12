@@ -1,21 +1,14 @@
 <template>
   <div id="typing" style="text-align: 35px;">
-      <!--
     <span
       v-for="(value,index) in text"
       :key="index"
-      style="font-size: 26px; margin-left: 2px; font-family: 'Times New Roman', Times, serif;"
       :class="{rightcolor:wordcompare(index)==2,wrongcolor:wordcompare(index)==1}"
     >
       {{text[index]}}
       <span>&nbsp;</span>
     </span>
-    -->
-    <span 
-      v-for="(value,index) in text" :key="index"
-    >
-        {{text[index]}}
-    </span>
+
     <br />
     <input
       id="inputtext"
@@ -25,6 +18,7 @@
       @keydown="timestart"
       @keydown.8="adddelettimes"
     />
+
     <hr />
 
     <div>
@@ -46,42 +40,41 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "typing",
-  computed: {
-    text() {
-      return this.$store.state.text
+  data:function(){
+      return{
+          inputtext:this.$store.getters.inputtext
+      }
+  },
+  computed: mapGetters([
+    "text",
+    
+    "hourx",
+    "minutesx",
+    "secondx",
+    "millisec",
+    "nowinterval",
+    "delettimes",
+    "totalwords",
+    "rightpercent"
+  ]),
+  methods: mapActions([
+    "timestart",
+    "timeclear",
+    "wordcompare",
+    "adddelettimes"
+  ]),
+  updated() {
+    if (this.inputtext === this.text) {//判断打字是否完成，完成则结束计时
+      clearInterval(this.nowinterval);
     }
   }
 };
 /*
-    window.onload = function () {
-            new Vue({
-                el: '#itany',
-                data: {
-
-                    text: 'ltt is very nb',  //打字文本
-                    inputtext: '',//用户输入内容
-                    hourx: 0,     //时
-                    minutesx: 0,  //分
-                    secondx: 0,   //秒
-                    millisec: 0,  //毫秒
-                    nowinterval: 0,  //保存当前interval
-                    delettimes: 0,  //退格次数
-                    totalwords: 0   //总打字数
-                },
-                computed: {
-                    rightpercent: function () {
-                        return (((this.totalwords - this.delettimes) / this.totalwords) * 100).toFixed(2)
-                    }
-                },
-                updated() {
-                    if (this.inputtext === this.text) {  //判断打字是否完成，完成则结束计时
-                        clearInterval(this.nowinterval);
-                    }
-                },
+               
                 methods: {
                     wordcompare(index) {  //比较文本与输入的内容
                         if (this.inputtext[index] != null) {
@@ -93,45 +86,6 @@ export default {
                             }
                         }
                     },
-                    timestart() { //启动计时
-                        this.totalwords++;
-                        if (this.nowinterval == 0) {  //判断interval是否存在,若存在则不启动新的计时
-                            this.nowinterval = setInterval(this.timeupdate, 10);
-                        }
-                    },
-                    timeupdate() {  //计时
-                        this.millisec++;
-                        if (this.millisec === 100) {
-                            this.millisec = 0;
-                            this.secondx++;
-                            if (this.secondx === 60) {
-                                this.secondx = 0;
-                                this.minutesx++;
-                                if (this.minutesx === 60) {
-                                    this.minutesx = 0;
-                                    this.hourx++;
-                                }
-                            }
-                        }
-                    },
-                    timeclear() {   //重新开始练习
-                        this.hourx = 0;
-                        this.minutesx = 0;
-                        this.secondx = 0;
-                        this.millisec = 0;
-                        this.inputtext = ''; 
-                        this.delettimes = 0;
-                        this.totalwords = 0;
-                        clearInterval(this.nowinterval);
-                        this.nowinterval = 0;
-                        
-                    },
-                    adddelettimes() {  //记录退格次数
-                        this.delettimes++;
-                    }
-                }
-            });
-        }
         */
 </script>
 
