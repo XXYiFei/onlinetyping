@@ -1,23 +1,24 @@
 <template>
   <div id="typing" style="text-align: 35px;">
-    <span
-      v-for="(value,index) in text"
-      :key="index"
-      :class="{rightcolor:wordcompare(index)==2,wrongcolor:wordcompare(index)==1}"
-    >
-      {{text[index]}}
-      <span>&nbsp;</span>
-    </span>
-
-    <br />
-    <input
-      id="inputtext"
-      type="text"
-      v-model="inputtext"
-      style="font-size: 26px; padding: 0; font-family: 'Times New Roman', Times, serif;"
-      @keydown="timestart"
-      @keydown.8="adddelettimes"
-    />
+    <div>
+      <span
+        v-for="(value,index) in text"
+        :key="index"
+        :class="{rightcolor:wordcompare(index)==2,wrongcolor:wordcompare(index)==1}"
+      >
+        {{text[index]}}
+        <span v-if="text[index]==' '">&nbsp;</span>
+      </span>
+      <br />
+      <input
+        id="inputtext"
+        type="text"
+        v-model="inputtext"
+        style="font-size: 26px; padding: 0; font-family: 'Times New Roman', Times, serif;"
+        @keydown="timestart"
+        @keydown.8="adddelettimes"
+      />
+    </div>
 
     <hr />
 
@@ -70,17 +71,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      "timestart", 
-      "timeclear", 
-      "adddelettimes"
-    ]),
-    wordcompare(index) {  //比较文本与输入的内容
+    ...mapActions(["timestart", "timeclear", "adddelettimes"]),
+    wordcompare(index) {
+      //比较文本与输入的内容
       if (this.$store.state.inputtext[index] != null) {
-        if (this.$store.state.inputtext[index] != this.$store.state.text[index]){
-          return 1;  //错误显示红色
+        if (
+          this.$store.state.inputtext[index] != this.$store.state.text[index]
+        ) {
+          return 1; //错误显示红色
         } else {
-          return 2;  //正确显示绿色
+          return 2; //正确显示绿色
         }
       }
     }
