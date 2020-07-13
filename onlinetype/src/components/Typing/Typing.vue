@@ -92,20 +92,6 @@ export default {
     }
   }
 };
-/*
-               
-                methods: {
-                    wordcompare(index) {  //比较文本与输入的内容
-                        if (this.inputtext[index] != null) {
-                            if (this.inputtext[index] != this.text[index]) {
-                                return 1;
-                            }
-                            else {
-                                return 2;
-                            }
-                        }
-                    },
-        */
 </script>
 
 <style lang="less" scoped>
