@@ -44,31 +44,50 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "typing",
-  data:function(){
-      return{
-          inputtext:this.$store.getters.inputtext
-      }
+  data: function() {
+    return {};
   },
-  computed: mapGetters([
-    "text",
-    
-    "hourx",
-    "minutesx",
-    "secondx",
-    "millisec",
-    "nowinterval",
-    "delettimes",
-    "totalwords",
-    "rightpercent"
-  ]),
-  methods: mapActions([
-    "timestart",
-    "timeclear",
-    "wordcompare",
-    "adddelettimes"
-  ]),
+  computed: {
+    ...mapGetters([
+      "text",
+      "hourx",
+      "minutesx",
+      "secondx",
+      "millisec",
+      "nowinterval",
+      "delettimes",
+      "totalwords",
+      "rightpercent"
+    ]),
+    inputtext: {
+      get() {
+        return this.$store.state.inputtext;
+      },
+      set(v) {
+        // 使用vuex中的mutations中定义好的方法来改变
+        this.$store.commit("INPUTTEXT", v);
+      }
+    }
+  },
+  methods: {
+    ...mapActions([
+      "timestart", 
+      "timeclear", 
+      "adddelettimes"
+    ]),
+    wordcompare(index) {  //比较文本与输入的内容
+      if (this.$store.state.inputtext[index] != null) {
+        if (this.$store.state.inputtext[index] != this.$store.state.text[index]){
+          return 1;  //错误显示红色
+        } else {
+          return 2;  //正确显示绿色
+        }
+      }
+    }
+  },
   updated() {
-    if (this.inputtext === this.text) {//判断打字是否完成，完成则结束计时
+    if (this.inputtext === this.text) {
+      //判断打字是否完成，完成则结束计时
       clearInterval(this.nowinterval);
     }
   }

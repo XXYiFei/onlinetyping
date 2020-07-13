@@ -56,23 +56,19 @@ const actions = {
     timestart({ commit, state }) {
         commit('timestart')
     },
-    timeupdate({ commit, state }) {
-        commit('timeupdate');
-    },
     timeclear({ commit, state }) {
         commit('timeclear');
     },
-    wordcompare({ commit, state }) {
-        commit('wordcompare');
-    },
     adddelettimes({ commit, state }) {
         commit('adddelettimes');
+    },
+    aaa({ commit, state }) {
+        commit('aaa');
     }
 
 }
 
 const mutations = {
-
     timestart(state) {  //启动计时
         state.totalwords++;
         if (state.nowinterval == 0) {  //判断interval是否存在,若存在则不启动新的计时
@@ -104,18 +100,11 @@ const mutations = {
         clearInterval(state.nowinterval);
         state.nowinterval = 0;
     },
-    wordcompare(index) {  //比较文本与输入的内容
-        if (state.inputtext[index] != null) {
-            if (state.inputtext[index] != state.text[index]) {
-                return 1;
-            }
-            else {
-                return 2;
-            }
-        }
-    },
     adddelettimes(state) {  //记录退格次数
         state.delettimes++;
+    },
+    INPUTTEXT(state,v){
+        state.inputtext=v;
     }
 
 }
