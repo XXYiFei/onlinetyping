@@ -1,10 +1,11 @@
 <template>
   <div id="typing" style="text-align: 35px;">
-    <div>
+    <div v-if="text">
       <span
         v-for="(value,index) in text"
         :key="index"
         :class="{rightcolor:wordcompare(index)==2,wrongcolor:wordcompare(index)==1}"
+        
       >
         {{text[index]}}
         <span v-if="text[index]==' '">&nbsp;</span>
@@ -21,6 +22,7 @@
     </div>
 
     <hr />
+    <div>inputtext:{{inputtext}}</div>
 
     <div>
       计时:
@@ -43,10 +45,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-export default {
-  name: "typing",
-  data: function() {
-    return {};
+export default {  
+  updated() {
+    if (this.inputtext === this.text) {
+      //判断打字是否完成，完成则结束计时
+      clearInterval(this.nowinterval);
+    }
   },
   computed: {
     ...mapGetters([
@@ -58,25 +62,25 @@ export default {
       "nowinterval",
       "delettimes",
       "totalwords",
-      "rightpercent"
+      "rightpercent" 
     ]),
-    inputtext: {
-      get() {
-        return this.$store.state.inputtext;
+    inputtext:{
+      get(){
+        return this.$store.getters.inputtext
       },
-      set(v) {
-        // 使用vuex中的mutations中定义好的方法来改变
-        this.$store.commit("INPUTTEXT", v);
-      }
+      set(v){
+        // 使用vuex中的mutations中定义好的方法来双向绑定
+          this.$store.commit('SET_INPUTTEXT', v)
+      }     
     }
   },
   methods: {
     ...mapActions(["timestart", "timeclear", "adddelettimes"]),
     wordcompare(index) {
       //比较文本与输入的内容
-      if (this.$store.state.inputtext[index] != null) {
+      if (this.inputtext[index] !== undefined) {
         if (
-          this.$store.state.inputtext[index] != this.$store.state.text[index]
+          this.inputtext[index] != this.text[index]
         ) {
           return 1; //错误显示红色
         } else {
@@ -84,14 +88,9 @@ export default {
         }
       }
     }
-  },
-  updated() {
-    if (this.inputtext === this.text) {
-      //判断打字是否完成，完成则结束计时
-      clearInterval(this.nowinterval);
-    }
   }
-};
+}
+
 </script>
 
 <style lang="less" scoped>

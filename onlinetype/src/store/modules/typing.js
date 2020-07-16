@@ -1,15 +1,8 @@
-/**
- * vuex配置
- */
+import types from '../types.js'
 
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex);
-
-var state = {
+const state = {
     text: 'ltt is very nb',  //打字文本
-    inputtext: '',//用户输入内容
+    inputtext:'',
     hourx: 0,     //时
     minutesx: 0,  //分
     secondx: 0,   //秒
@@ -19,7 +12,7 @@ var state = {
     totalwords: 0,   //总打字数
 }
 
-var getters = {
+const getters = {
     text(state) {
         return state.text;
     },
@@ -54,22 +47,19 @@ var getters = {
 
 const actions = {
     timestart({ commit, state }) {
-        commit('timestart')
+        commit(types.TIME_START)
     },
     timeclear({ commit, state }) {
-        commit('timeclear');
+        commit(types.TIME_CLEAR);
     },
     adddelettimes({ commit, state }) {
-        commit('adddelettimes');
-    },
-    aaa({ commit, state }) {
-        commit('aaa');
+        commit(types.ADD_DELETTIMES);
     }
 
 }
 
 const mutations = {
-    timestart(state) {  //启动计时
+    [types.TIME_START](state) {  //启动计时
         state.totalwords++;
         if (state.nowinterval == 0) {  //判断interval是否存在,若存在则不启动新的计时
             state.nowinterval = setInterval(function () {
@@ -89,7 +79,7 @@ const mutations = {
             }, 10);
         }
     },
-    timeclear(state) {  //重新开始
+    [types.TIME_CLEAR](state) {  //重新开始
         state.hourx = 0;
         state.minutesx = 0;
         state.secondx = 0;
@@ -100,20 +90,16 @@ const mutations = {
         clearInterval(state.nowinterval);
         state.nowinterval = 0;
     },
-    adddelettimes(state) {  //记录退格次数
+    [types.ADD_DELETTIMES](state) {  //记录退格次数
         state.delettimes++;
     },
-    INPUTTEXT(state,v){
+    SET_INPUTTEXT(state,v){
         state.inputtext=v;
     }
-
 }
-
-const store = new Vuex.Store({
-    state,
-    getters,
-    actions,
-    mutations
-})
-
-export default store;
+export default {
+	state,
+	getters,
+	actions,
+	mutations
+}
