@@ -1,7 +1,7 @@
 import types from '../types.js'
 
 const state = {
-    text: 'ltt is very nb',  //打字文本
+    text: '夏老板太强了',  //打字文本
     inputtext:'',
     hourx: 0,     //时
     minutesx: 0,  //分
@@ -10,6 +10,7 @@ const state = {
     nowinterval: 0,  //保存当前interval
     delettimes: 0,  //退格次数
     totalwords: 0,   //总打字数
+    typingshow:false
 }
 
 const getters = {
@@ -40,6 +41,9 @@ const getters = {
     totalwords(state) {
         return state.totalwords;
     },
+    typingshow(state) {
+        return state.typingshow;
+    },
     rightpercent(state) {
         return (((state.totalwords - state.delettimes) / state.totalwords) * 100).toFixed(2)
     }
@@ -54,6 +58,9 @@ const actions = {
     },
     adddelettimes({ commit, state }) {
         commit(types.ADD_DELETTIMES);
+    },
+    showtyping({commit,state}){
+        commit(types.SHOW_TYPING);
     }
 
 }
@@ -92,6 +99,9 @@ const mutations = {
     },
     [types.ADD_DELETTIMES](state) {  //记录退格次数
         state.delettimes++;
+    },
+    [types.SHOW_TYPING](state){
+        state.typingshow=true;
     },
     SET_INPUTTEXT(state,v){
         state.inputtext=v;

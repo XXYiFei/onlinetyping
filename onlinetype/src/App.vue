@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <v-typing></v-typing>
-    <router-view/>
+    <v-welcome></v-welcome>
+    
   </div>
 </template>
 
 <script>
-import Typing from './components/Typing/Typing'
+import welcome from './components/Welcome/Welcome.vue'
 
 export default {
   components:{
-    'v-typing':Typing
+    'v-welcome':welcome
   }
 }
 </script>
