@@ -1,6 +1,6 @@
 <template>
   <div class="test">
-    <div id="typing-input" style="text-align: 35px;">
+    <div id="test-input">
       <div class="text" v-for="index of linenum" :key="index">
         <span
           class="word"
@@ -25,7 +25,6 @@
     </div>
     <div class="info">
       <div>
-        计时:
         <span v-if="hourx<10">0</span>
         {{hourx}}:
         <span v-if="minutesx<10">0</span>

@@ -1,0 +1,49 @@
+#test-input {
+    margin: auto;
+    height: 500px;
+    width: 1070px;
+    margin-top: 15px;
+    text-align: 35px;
+  }
+.info {
+    position: fixed;
+    right: 5px;
+    top: 133px;
+    background-color: #fff;
+    height: 400px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+.info>div{
+    margin-left: 25px;
+    margin-top: 20px;
+    width: 150px;
+}
+.text {
+    display: inline-block;
+  }
+.word {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    user-select: none;
+  }
+.rightcolor {
+    background-color: green;
+    color: white;
+  }
+  
+.wrongcolor {
+    background-color: red;
+    color: white;
+}
+#inputtext {
+    border: black solid 1px;
+    border-radius: 2px;
+    height: 30px;
+    width: 1070px;
+    font-size: 20px;
+    padding: 0;
+}
