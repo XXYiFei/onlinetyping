@@ -1,0 +1,72 @@
+.navi {
+    position: fixed;
+    height: 50px;
+    width: 1400px;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    border: rgb(27, 129, 245) solid 6px;
+    border-top-left-radius: 50px;
+    border-right: none;
+    background-color: rgb(201, 244, 250);
+  }
+  .typing {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -670px;
+    background-color: rgb(238, 234, 181);
+    height: 550px;
+    width: 1170px;
+    border-radius: 20px;
+    z-index: 666;
+  }
+  #typing-input {
+    margin: auto;
+    height: 500px;
+    width: 1070px;
+    margin-top: 15px;
+  }
+  .cometyping-enter {
+    opacity: 0;
+  }
+  .cometyping-enter-active {
+    transition: all 2s ease;
+  }
+  .info {
+    position: fixed;
+    right: 5px;
+    top: 133px;
+    background-color: #fff;
+    height: 400px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .text {
+    display: inline-block;
+  }
+  .word {
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    user-select: none;
+  }
+  .rightcolor {
+    background-color: green;
+    color: white;
+  }
+  
+  .wrongcolor {
+    background-color: red;
+    color: white;
+  }
+  #inputtext {
+    border: black solid 1px;
+    border-radius: 2px;
+    height: 30px;
+    width: 1070px;
+    font-size: 20px;
+    padding: 0;
+  }

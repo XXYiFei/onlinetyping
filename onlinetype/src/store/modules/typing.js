@@ -1,8 +1,8 @@
 import types from '../types.js'
 
 const state = {
-    text: '夏老板太强了',  //打字文本
-    inputtext:'',
+    text: ['腾讯视频致力于打造中国领先的在线视频媒体平台，以丰富的内容、极致的观看体验、便捷的登录方式、二十四小时多平','台无缝应用体验以及快捷分享的产品特性，主要满足用户在线观看'],  //打字文本
+    inputtext:['',''],
     hourx: 0,     //时
     minutesx: 0,  //分
     secondx: 0,   //秒
@@ -10,7 +10,7 @@ const state = {
     nowinterval: 0,  //保存当前interval
     delettimes: 0,  //退格次数
     totalwords: 0,   //总打字数
-    typingshow:false
+    typingshow:false,
 }
 
 const getters = {
@@ -68,7 +68,7 @@ const actions = {
 const mutations = {
     [types.TIME_START](state) {  //启动计时
         state.totalwords++;
-        if (state.nowinterval == 0) {  //判断interval是否存在,若存在则不启动新的计时
+        if (state.nowinterval == 0 ) {  //判断interval是否存在,若存在则不启动新的计时
             state.nowinterval = setInterval(function () {
                 state.millisec++;
                 if (state.millisec === 100) {
@@ -91,7 +91,7 @@ const mutations = {
         state.minutesx = 0;
         state.secondx = 0;
         state.millisec = 0;
-        state.inputtext = '';
+        state.inputtext = ['',''];
         state.delettimes = 0;
         state.totalwords = 0;
         clearInterval(state.nowinterval);

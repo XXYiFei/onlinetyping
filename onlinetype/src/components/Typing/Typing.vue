@@ -1,30 +1,30 @@
 <template>
   <transition name="cometyping">
     <div class="typing" v-show="typingshow">
+      <div class="navi"></div>
       <div id="typing-input" style="text-align: 35px;">
-        <div v-if="text">
+        <div class="text" v-for="index of linenum" :key="index">
           <span
-            v-for="(value,index) in text"
-            :key="index"
-            :class="{rightcolor:wordcompare(index)==2,wrongcolor:wordcompare(index)==1}"
+            class="word"
+            v-for="(value,indexx) in text[index-1]" :key="indexx"
+            :class="{rightcolor:wordcompare(index,indexx)==2,wrongcolor:wordcompare(index,indexx)==1}"
           >
-            {{text[index]}}
-            <span v-if="text[index]==' '">&nbsp;</span>
+            {{value}}
+            <span v-if="value==' '">&nbsp;</span>
           </span>
-          <br />
           <input
             id="inputtext"
             type="text"
-            v-model="inputtext"
-            style="font-size: 26px; padding: 0; font-family: 'Times New Roman', Times, serif;"
+            onpaste="return false"
+            autocomplete="off"
+            v-model="inputtext[index-1]"
             @keydown="timestart"
             @keydown.8="adddelettimes"
+            maxlength="53"
           />
         </div>
-
-        <hr />
-        <div>inputtext:{{inputtext}}</div>
-
+      </div>
+      <div class="info">
         <div>
           计时:
           <span v-if="hourx<10">0</span>
@@ -35,11 +35,11 @@
           {{secondx}}:
           <span v-if="millisec<10">0</span>
           {{millisec}}
-          <button @click="timeclear">重新开始</button>
         </div>
         <div>总打字数:{{totalwords}}</div>
         <div>退格:{{delettimes}}</div>
         <div>有效打字率:{{rightpercent}}%</div>
+        <button @click="timeclear">重新开始</button>
       </div>
     </div>
   </transition>
@@ -50,7 +50,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   updated() {
-    if (this.inputtext === this.text) {
+    if (this.inputtext.toString() === this.text.toString()) {
       //判断打字是否完成，完成则结束计时
       clearInterval(this.nowinterval);
     }
@@ -76,17 +76,23 @@ export default {
         // 使用vuex中的mutations中定义好的方法来双向绑定
         this.$store.commit("SET_INPUTTEXT", v);
       }
+    },
+    linenum: {
+      get() {
+        return this.$store.getters.text.length;
+      }
     }
   },
   methods: {
     ...mapActions(["timestart", "timeclear", "adddelettimes"]),
-    wordcompare(index) {
+    wordcompare(index,indexx) {
       //比较文本与输入的内容
-      if (this.inputtext[index] !== undefined) {
-        if (this.inputtext[index] != this.text[index]) {
+      if (this.inputtext[index-1][indexx] !== undefined) {
+        if (this.inputtext[index-1][indexx] != this.text[index-1][indexx]) {
           return 1; //错误显示红色
         } else {
           return 2; //正确显示绿色
+          
         }
       }
     }
@@ -95,45 +101,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.typing {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin: -250px 0 0 -250px;
-  background-color: rgb(227, 227, 236);
-  height: 500px;
-  width: 500px;
-  border-radius: 20px;
-  z-index: 666;
-}
-#typing-input{
-  margin: auto;
-  height: 400px;
-  width: 400px;
-  margin-top: 50px;
-}
-.cometyping-enter {
-  opacity: 0;
-  border-radius: 250px;
-}
-.cometyping-enter-active{
-  transition: all 2s ease;
-  top: 50%;
-  left: 50%;
-  margin: -250px 0 0 -250px;
-  height: 500px;
-  width: 500px;
-}
-.rightcolor {
-  background-color: green;
-  color: white;
-}
 
-.wrongcolor {
-  background-color: red;
-  color: white;
-}
-#inputtext {
-  border: black solid 1px;
-}
 </style>
