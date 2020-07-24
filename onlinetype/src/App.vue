@@ -16,4 +16,5 @@ export default {
 
 <style>
 @import "../static/css/typing.css";
+@import "../static/css/test.css";
 </style>
