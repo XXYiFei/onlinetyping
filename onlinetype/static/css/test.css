@@ -39,7 +39,7 @@
     background-color: red;
     color: white;
 }
-#inputtext {
+.inputtext {
     border: black solid 1px;
     border-radius: 2px;
     height: 30px;

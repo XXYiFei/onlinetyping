@@ -12,13 +12,15 @@
           <span v-if="value==' '">&nbsp;</span>
         </span>
         <input
-          id="inputtext"
+          :id="inputText(index)"
+          class="inputtext"
           type="text"
           onpaste="return false"
           autocomplete="off"
           v-model="inputtext[index-1]"
           @keydown="timestart"
           @keydown.8="adddelettimes"
+          @keyup="finishcheck(index)"
           maxlength="53"
         />
       </div>
@@ -41,7 +43,7 @@
     </div>
   </div>
 </template>
-<script>
+<script >
 import { mapGetters, mapActions } from "vuex";
 export default {
   updated() {
@@ -61,22 +63,24 @@ export default {
       "delettimes",
       "totalwords",
       "rightpercent",
-      "typingshow"
+      "typingshow",
     ]),
     inputtext: {
+      //用户输入的文本
       get() {
         return this.$store.getters.inputtext;
       },
       set(v) {
         // 使用vuex中的mutations中定义好的方法来双向绑定
         this.$store.commit("SET_INPUTTEXT", v);
-      }
+      },
     },
     linenum: {
+      //行数
       get() {
         return this.$store.getters.text.length;
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapActions(["timestart", "timeclear", "adddelettimes"]),
@@ -89,7 +93,20 @@ export default {
           return 2; //正确显示绿色
         }
       }
-    }
-  }
+    },
+    inputText(index) {
+      return "inputtext" + index;
+    },
+    finishcheck(index) {
+      //自动跳转到下一个input
+      let nextindex = index+1;
+      let inputText = "inputtext" + nextindex;
+      if (this.inputtext[index - 1].length == 53) {
+        if (index < this.$store.getters.text.length) {
+          document.getElementById(inputText).focus();
+        }
+      }
+    },
+  },
 };
 </script>
