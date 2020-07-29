@@ -4,21 +4,77 @@
     width: 1070px;
     margin-top: 15px;
     text-align: 35px;
+    overflow: hidden;
   }
-.info {
+.info-outside {
     position: fixed;
-    right: 5px;
+    right: 25px;
     top: 133px;
     background-color: #fff;
-    height: 400px;
-    width: 200px;
+    height: 520px;
+    width: 180px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
+    background: #d9ebf7;
+    box-shadow:  11px 11px 20px #a7b5be, 
+                -11px -11px 20px #ffffff;
   }
-.info>div{
-    margin-left: 25px;
+.info-outside-sum{
+  height: 240px;
+  border: #a2b8c9 solid 1px;
+  border-radius: 20px;
+  padding-left: 20px;
+
+}
+.info-outside-sum>div{
+  margin-top: 20px;
+}
+.info-inside{
+  margin: auto;
+  margin-top: 20px;
+  height: 250px;
+  padding-top: 10px;
+  width: 170px;
+  border-radius: 20px;
+  background: #d9ebf7;
+  box-shadow: inset 13px 13px 16px #bbcad4, 
+              inset -13px -13px 16px #f7ffff;
+}
+.info-inside>button{
+    height: 50px;
+    width: 50px;
+    margin-left: 23px;
     margin-top: 20px;
-    width: 150px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    background-color: #d9ebf7;
+    box-shadow:  5px 5px 10px #89949c, 
+             -5px -5px 10px #ffffff;
+}
+.info-inside>button:hover{
+  height: 55px;
+  width: 55px;
+}
+.button-start{
+  background-image: url('../images/test/start.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.button-stop{
+  background-image: url('../images/test/stop.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.button-restart{
+  background-image: url('../images/test/restart.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.button-article{
+  background-image: url('../images/test/article.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 .text {
     display: inline-block;
@@ -28,7 +84,7 @@
     font-size: 20px;
     margin-bottom: 5px;
     margin-top: 5px;
-    user-select: none;
+    /*user-select: none;*/
   }
 .rightcolor {
     background-color: green;
