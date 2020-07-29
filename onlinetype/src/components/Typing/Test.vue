@@ -11,14 +11,12 @@
           {{value}}
           <span v-if="value==' '">&nbsp;</span>
         </span>
-        <!--
-          onpaste="return false"
-        -->
         <input
           :id="inputText(index)"
           class="inputtext"
           type="text"
           autocomplete="off"
+          onpaste="return false"
           v-model="inputtext[index-1]"
           @keydown="timestart"
           @keydown.8="adddelettimes"
@@ -45,10 +43,10 @@
         <div>APM:{{APM}}</div>
       </div>
       <div class="info-inside">
-        <button class="button-start">.</button>
-        <button class="button-stop" @click="timestop">.</button>
-        <button class="button-restart" @click="timeclear">.</button>
-        <button class="button-article">.</button>
+        <button class="button-start">&nbsp;</button>
+        <button class="button-stop" @click="timestop">&nbsp;</button>
+        <button class="button-restart" @click="timeclear">&nbsp;</button>
+        <button class="button-article">&nbsp;</button>
       </div>
     </div>
   </div>

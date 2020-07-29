@@ -53,8 +53,7 @@
              -5px -5px 10px #ffffff;
 }
 .info-inside>button:hover{
-  height: 55px;
-  width: 55px;
+  cursor: pointer;
 }
 .button-start{
   background-image: url('../images/test/start.png') ;
@@ -66,15 +65,43 @@
   background-repeat: no-repeat;
   background-size: 100%;
 }
+.button-stop:active{
+  background-image: url('../images/test/stop.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  background-color: #d9ebf7;
+  box-shadow: inset 5px 5px 6px #b9c2c8, 
+              inset -5px -5px 6px #ffffff;
+}
+
 .button-restart{
   background-image: url('../images/test/restart.png') ;
   background-repeat: no-repeat;
   background-size: 100%;
 }
+.button-restart:active{
+  background-image: url('../images/test/restart.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  background-color: #d9ebf7;
+  box-shadow: inset 5px 5px 6px #b9c2c8, 
+              inset -5px -5px 6px #ffffff;
+}
 .button-article{
   background-image: url('../images/test/article.png') ;
   background-repeat: no-repeat;
   background-size: 100%;
+}
+.button-article:active{
+  background-image: url('../images/test/article.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  background-color: #d9ebf7;
+  box-shadow: inset 5px 5px 6px #b9c2c8, 
+              inset -5px -5px 6px #ffffff;
 }
 .text {
     display: inline-block;
@@ -84,7 +111,7 @@
     font-size: 20px;
     margin-bottom: 5px;
     margin-top: 5px;
-    /*user-select: none;*/
+    user-select: none;
   }
 .rightcolor {
     background-color: green;
@@ -99,7 +126,7 @@
     border: black solid 1px;
     border-radius: 2px;
     height: 30px;
-    width: 1070px;
+    width: 1065px;
     font-size: 20px;
     padding: 0;
 }
