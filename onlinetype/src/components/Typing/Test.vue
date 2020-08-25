@@ -43,7 +43,7 @@
         <div>APM:{{APM}}</div>
       </div>
       <div class="info-inside">
-        <button class="button-start">&nbsp;</button>
+        <button class="button-start" @click="timestart">&nbsp;</button>
         <button class="button-stop" @click="timestop">&nbsp;</button>
         <button class="button-restart" @click="timeclear">&nbsp;</button>
         <button class="button-article">&nbsp;</button>

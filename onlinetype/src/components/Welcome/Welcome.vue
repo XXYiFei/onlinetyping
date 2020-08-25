@@ -1,6 +1,23 @@
 <template>
   <div id="welcome">
-    <button class="start" @click="showtyping">开始测试</button>
+    <div class="former">
+      <div class="form-font">账号</div>
+      <div class="inner">
+        <input type="text" placeholder="请输入账号" />
+        <span class="icon icon-account"></span>
+      </div>
+      <div class="form-font">密码</div>
+      <div class="inner">
+        <input type="text" placeholder="请输入密码" />
+        <span class="icon icon-password"></span>
+      </div>
+      <div>
+        <input type="button" value="登录" class="form-button button-login" @click="showtyping"/>
+      </div>
+      <div>
+        <input type="button" value="注册" class="form-button button-register" />
+      </div>
+    </div>
     <v-typing></v-typing>
   </div>
 </template>
@@ -12,34 +29,10 @@ export default {
   methods: {
     showtyping() {
       this.$store.dispatch("showtyping");
-    }
+    },
   },
   components: {
-    "v-typing": typing
-  }
+    "v-typing": typing,
+  },
 };
 </script>
-
-<style lang="less" scoped>
-.start {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -100px;
-  background-color: rgb(108, 169, 248);
-  border-radius: 50%;
-  border: white dashed 5px;
-  color: white;
-  font-size: 30px;
-  outline: none;
-}
-.start:hover {
-  cursor: pointer;
-  width: 220px;
-  height: 220px;
-  margin: -110px 0 0 -110px;
-  font-size: 35px;
-}
-</style>

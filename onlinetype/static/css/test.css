@@ -60,6 +60,15 @@
   background-repeat: no-repeat;
   background-size: 100%;
 }
+.button-start:active{
+  background-image: url('../images/test/start.png') ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  background-color: #d9ebf7;
+  box-shadow: inset 5px 5px 6px #b9c2c8, 
+              inset -5px -5px 6px #ffffff;
+}
 .button-stop{
   background-image: url('../images/test/stop.png') ;
   background-repeat: no-repeat;
